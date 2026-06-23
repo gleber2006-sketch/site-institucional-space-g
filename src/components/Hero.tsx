@@ -50,7 +50,7 @@ export default function Hero() {
             <span className="text-gradient">crescer de verdade.</span>
           </h1>
           <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Desenvolvemos sistemas, automatizamos processos e gerenciamos sua presença digital — do site ao anúncio, do agendamento ao atendimento automatizado.
+            Desenvolvemos sistemas, automatizamos processos e gerenciamos sua presença digital: do site ao anúncio, do agendamento ao atendimento automatizado.
           </p>
         </motion.div>
 
