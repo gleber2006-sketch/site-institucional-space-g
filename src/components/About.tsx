@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import RevealOnScroll from "./RevealOnScroll";
 
 const stats = [
-  { label: "clientes atendidos", value: "+50" },
+  { label: "clientes atendidos", value: "+200" },
   { label: "anos de experiência", value: "+3" },
   { label: "serviços especializados", value: "6" },
   { label: "Suporte próximo", value: "100%" },
@@ -13,23 +13,12 @@ export default function About() {
   return (
     <section id="sobre" className="section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
-        <div className="lg:w-1/2">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold mb-8"
-          >
-            Sobre a Space-G
-          </motion.h2>
+        <RevealOnScroll delay={0} className="lg:w-1/2">
+          <h2 className="text-3xl md:text-5xl font-bold mb-8">
+            Sobre a <span className="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)] hover:text-white transition-colors duration-300">Space-G</span>
+          </h2>
           
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="space-y-6 text-neutral-400 text-lg leading-relaxed"
-          >
+          <div className="space-y-6 text-neutral-400 text-lg leading-relaxed">
             <p>
               A Space-G é uma agência de tecnologia e marketing digital focada em transformar negócios locais através de soluções digitais inteligentes. 
             </p>
@@ -39,17 +28,13 @@ export default function About() {
             <p>
               Nosso objetivo é simplificar a tecnologia para que você possa focar no que realmente importa: o crescimento do seu negócio.
             </p>
-          </motion.div>
-        </div>
+          </div>
+        </RevealOnScroll>
 
-        <div className="lg:w-1/2 grid grid-cols-2 gap-4">
-          {stats.map((stat, index) => (
-            <motion.div
+        <RevealOnScroll delay={0.15} className="lg:w-1/2 grid grid-cols-2 gap-4">
+          {stats.map((stat) => (
+            <div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
               className="p-8 glass rounded-3xl text-center flex flex-col justify-center items-center group hover:border-accent/30 transition-colors"
             >
               <span className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
@@ -58,9 +43,9 @@ export default function About() {
               <span className="text-xs uppercase tracking-widest text-neutral-400 font-bold">
                 {stat.label}
               </span>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </RevealOnScroll>
       </div>
 
       {/* Decorative background element */}
