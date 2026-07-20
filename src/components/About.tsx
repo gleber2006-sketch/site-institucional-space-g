@@ -3,8 +3,8 @@
 import RevealOnScroll from "./RevealOnScroll";
 
 const stats = [
-  { label: "clientes atendidos", value: "+200" },
-  { label: "anos de experiência", value: "+3" },
+  { label: "PROJETOS ENTREGUES", value: "+200" },
+  { label: "anos de experiência", value: "+6" },
   { label: "serviços especializados", value: "6" },
   { label: "Suporte próximo", value: "100%" },
 ];
