@@ -79,7 +79,7 @@ export default function Services() {
                 </div>
                 
                 {service.badge && (
-                  <span className="absolute top-8 right-8 text-[10px] font-bold uppercase tracking-widest bg-accent text-black px-2 py-1 rounded-md">
+                  <span className="absolute top-8 right-8 text-[10px] font-bold uppercase tracking-widest bg-green-500 text-white px-2 py-1 rounded-md">
                     {service.badge}
                   </span>
                 )}
