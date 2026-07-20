@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { 
   Calendar, 
   Settings2, 
@@ -10,14 +9,16 @@ import {
   Palette, 
   ArrowUpRight 
 } from "lucide-react";
+import RevealOnScroll from "./RevealOnScroll";
 
 const services = [
   {
     id: 1,
-    title: "Sistema de Agendamentos Online",
-    description: "Plataforma própria de agendamentos desenvolvida para barbearias e clínicas. Configuração simples, automações integradas e assistente de IA.",
+    title: "Sistema de Agendamentos Space Grid",
+    description: "Agendamento online 24h, confirmação automática por WhatsApp, painel de controle para gestão de agenda, lembretes automáticos e muito mais.",
     icon: Calendar,
-    badge: "Em breve",
+    badge: "Lançamento",
+    link: { label: "Inicie Grátis", href: "https://spacegrid.space-g.com.br/" },
     color: "accent"
   },
   {
@@ -56,62 +57,52 @@ export default function Services() {
   return (
     <section id="servicos" className="section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold mb-4"
-          >
-            O que fazemos
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-neutral-400 text-lg max-w-2xl mx-auto"
-          >
-            Soluções completas para digitalizar, automatizar e escalar seu negócio.
-          </motion.p>
-        </div>
+        <RevealOnScroll delay={0}>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              O que fazemos
+            </h2>
+            <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
+              Soluções completas para digitalizar, automatizar e escalar seu negócio.
+            </p>
+          </div>
+        </RevealOnScroll>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className={`group p-8 glass-dark rounded-3xl hover:bg-white/5 transition-all duration-500 flex flex-col h-full relative ${service.id === 1 ? 'border-primary/50 shadow-[0_0_30px_rgba(10,22,40,0.3)]' : ''}`}
-            >
-              <div className="mb-6 p-3 bg-primary/30 w-fit rounded-2xl group-hover:scale-110 transition-transform duration-500">
-                <service.icon size={28} className={service.badge ? "text-accent" : "text-white"} />
-              </div>
-              
-              {service.badge && (
-                <span className="absolute top-8 right-8 text-[10px] font-bold uppercase tracking-widest bg-accent text-black px-2 py-1 rounded-md">
-                  {service.badge}
-                </span>
-              )}
-
-              <h3 className="text-xl font-bold mb-4 group-hover:text-accent transition-colors">
-                {service.title}
-              </h3>
-              
-              <p className="text-neutral-400 text-sm leading-relaxed mb-8 flex-grow">
-                {service.description}
-              </p>
-
-              <a 
-                href="#" 
-                className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest hover:translate-x-1 transition-transform"
+            <RevealOnScroll key={service.id} delay={(index % 3) * 0.1}>
+              <div
+                className={`group p-8 glass-dark rounded-3xl hover:bg-white/5 transition-all duration-500 flex flex-col h-full relative ${service.id === 1 ? 'border-primary/50 shadow-[0_0_30px_rgba(10,22,40,0.3)]' : ''}`}
               >
-                <span>Saiba mais</span>
-                <ArrowUpRight size={14} />
-              </a>
-            </motion.div>
+                <div className="mb-6 p-3 bg-primary/30 w-fit rounded-2xl group-hover:scale-110 transition-transform duration-500">
+                  <service.icon size={28} className={service.badge ? "text-accent" : "text-white"} />
+                </div>
+                
+                {service.badge && (
+                  <span className="absolute top-8 right-8 text-[10px] font-bold uppercase tracking-widest bg-accent text-black px-2 py-1 rounded-md">
+                    {service.badge}
+                  </span>
+                )}
+
+                <h3 className="text-xl font-bold mb-4 group-hover:text-accent transition-colors">
+                  {service.title}
+                </h3>
+                
+                <p className="text-neutral-400 text-sm leading-relaxed mb-8 flex-grow">
+                  {service.description}
+                </p>
+
+                <a 
+                  href={service.link?.href ?? "#"} 
+                  target={service.link?.href ? "_blank" : undefined}
+                  rel={service.link?.href ? "noopener noreferrer" : undefined}
+                  className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest hover:translate-x-1 transition-transform"
+                >
+                  <span>{service.link?.label ?? "Saiba mais"}</span>
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+            </RevealOnScroll>
           ))}
         </div>
       </div>
